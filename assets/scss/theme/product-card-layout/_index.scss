@@ -1,0 +1,12 @@
+@layer theme {
+    .ProductCardLayout {
+        list-style: none;
+        margin-block-end: 0;
+        padding: 0;
+
+        // Direct override — intentionally skips the parent component's per-breakpoint
+        // dedupe @each loop. See JUSTIFICATION.md.
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px + 2dvi), 1fr));
+        row-gap: $spacer-4;
+    }
+}

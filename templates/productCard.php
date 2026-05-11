@@ -1,54 +1,49 @@
+<?php /** @var array $product */ ?>
 <div class="ProductCard">
-    <a href="#product" class="ProductCard-link"></a>
+    <?php
+    // Phantom-anchor antipattern removed:
+    // - no accessible link text for screen readers
+    // - no meaningful anchor text for SEO
+    // See JUSTIFICATION.md for details.
+    ?>
     <div class="ProductCard-header">
         <div class="ProductCard-imageWrapper">
-            <img src="public/images/product-<?php echo rand(0,1); ?>.png" width="652" height="560" alt="" class="ProductCard-image ProductCard-image--primary" loading="lazy">
+            <img src="<?= $product['image']['url'] ?>" alt="<?= htmlspecialchars($product['title']) ?>" width="<?= $product['image']['width'] ?>" height="<?= $product['image']['height'] ?>" class="ProductCard-image ProductCard-image--primary" decoding="async" loading="lazy">
         </div>
-        <?php if (rand(0,1)) { ?>
-            <div class="ProductCard-primaryBadges">
-                <div class="Badge Badge--circle">
-                    -10%
-                </div>
-            </div>
-        <?php } ?>
-        <?php if (rand(0,1)) { ?>
-            <div class="ProductCard-tertiaryBadges">
-                <div class="Badge Badge--rectangleSide">Pro grafiky</div>
-            </div>
-        <?php } ?>
+        <?php if (!empty($product['labels'])): ?>
+            <ul class="ProductCard-badges">
+                <?php foreach ($product['labels'] as $label): ?>
+                    <li class="ProductCard-badge ProductCard-badge--<?= $label['type'] ?>"><?= htmlspecialchars($label['text']) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
     </div>
     <div class="ProductCard-body">
+        <?php
+        // Explicit tabindex is needed for Safari keyboard navigation.
+        // Enables card `:focus-within` behavior for keyboard users.
+        // See JUSTIFICATION.md for browser specifics.
+        ?>
         <div>
-            <?php if (rand(0,1)) { ?>
-            <div class="ProductCard-secondaryBadges">
-                <div class="Badge Badge--rectangle" style="--color: #5ce62e">
-                    štítek test
-                </div>
-            </div>
-            <?php } ?>
-            <h2 class="ProductCard-title">
-                <?php if (rand(0,1)) { ?>
-                    MacBook Pro 15" 2,5 GHz s Retina displejem, 512 GB (2015)
-                <?php } else { ?>
-                    iPhone 5s
-                <?php } ?>
-            </h2>
+            <h2 class="ProductCard-title"><a href="#product-<?= $product['id'] ?>" class="ProductCard-link" tabindex="0"><?= htmlspecialchars($product['title']) ?></a></h2>
         </div>
-        <div class="ProductCard-stock">
-            <?php if (rand(0,1)) { ?>
-            <div class="u-fontMedium u-textColorGreen">Skladem &gt; 5 ks</div>
-            <?php } else { ?>
-                <div class="u-fontMedium u-textColorOrange">Naskladníme do 24 hodin</div>
-            <?php } ?>
+        <div class="ProductCard-sizes">
+            <b class="ProductCard-sizes__label">Zvolte velikost:</b>
+            <div class="ProductCard-sizes__list">
+                <?php foreach ($product['sizes'] as $i => $size): ?>
+                    <?php if ($i > 0): ?><span hidden>, </span><?php endif; ?>
+                    <a href="#product-<?= $product['id'] ?>-<?= $size ?>" class="ProductCard-sizes__item" tabindex="0"><?= strtoupper($size) ?></a>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
     <div class="ProductCard-footer">
         <div class="ProductCard-footerContent">
             <div class="ProductCard-priceWrapper">
-                <div class="ProductCard-price"> 76&nbsp;990&nbsp;Kč</div>
-            </div>
-            <div class="ProductCard-quantity">
-                <a href="#basket" class="Btn Btn--secondary Btn--style1 Btn-0--block Btn-xs--block Btn-sm--block ProductCard-btn ">Do košíku</a>
+                <div class="ProductCard-price"><?= format_price($product['price']['current']) ?></div>
+                <?php if (isset($product['price']['original'])): ?>
+                    <s class="ProductCard-priceOld"><?= format_price($product['price']['original']) ?></s>
+                <?php endif; ?>
             </div>
         </div>
     </div>

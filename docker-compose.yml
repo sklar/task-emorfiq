@@ -13,5 +13,6 @@ services:
       - '8080:80'
     volumes:
       - ./index.php:/var/www/html/index.php
+      - ./data:/var/www/html/data
       - ./templates:/var/www/html/templates
       - ./public:/var/www/html/public

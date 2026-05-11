@@ -1,3 +1,7 @@
 {
-  "recommendations": ["bmewburn.vscode-intelephense-client", "EditorConfig.EditorConfig", "oxc.oxc-vscode"]
+  "recommendations": [
+    "bmewburn.vscode-intelephense-client",
+    "EditorConfig.EditorConfig",
+    "oxc.oxc-vscode"
+  ]
 }

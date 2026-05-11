@@ -89,16 +89,20 @@ Apply changes in this order:
 .
 ├── assets/
 │   └── scss/                   # source styles (Vite entry)
+├── data/
+│   └── products.json           # mock product data
 ├── docker/                     # Apache config
 ├── public/
+│   ├── fonts/                  # self-hosted Manrope variable
 │   └── images/                 # static images
 ├── resources/
 │   └── theme.fig               # design reference
 ├── templates/
+│   ├── helpers.php             # format_price() etc.
 │   ├── productCard.php
 │   └── vite.php                # vite_assets() helper
-├── docker-compose.yml          # hybrid local dev
 ├── Dockerfile                  # 3-stage build, prod target = runtime
+├── docker-compose.yml          # hybrid local dev
 ├── index.php                   # entry page
 ├── package.json
 └── vite-plugin-hot-file.js     # writes public/hot during pnpm dev

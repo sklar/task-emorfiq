@@ -1,7 +1,13 @@
+// Declare cascade layer order
+@layer settings, reset, generic, typography, components, theme, utilities;
+@layer components.ui, components.eshop;
+
 @import "functions";
-@import "variables";
-@import "theme";
 @import "mixins";
+@import "variables";
+
+@import "theme";
+
 @import "root";
 @import "reboot";
 @import "typography";

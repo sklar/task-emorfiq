@@ -31,6 +31,7 @@ RUN pnpm build
 # --- Stage: prod runtime (default; Render builds this) ---
 FROM runtime-dev AS runtime
 COPY index.php ./
+COPY data ./data
 COPY templates ./templates
 COPY public ./public
 COPY --from=assets /app/dist ./dist

@@ -1,1 +1,23 @@
+// Brand colors
+$ui-color-primary-500: #d91242;
+
+// Colors
+$ui-global-background: #f5f5f5;
+$ui-global-text-color: #1d1d1b;
+
+// Spacing
+$spacer-0: 6px;
+$spacer-1: 12px;
+$spacer-2: 18px;
+$spacer-3: 24px;
+$spacer-4: 36px;
+$spacer-5: 48px;
+$spacer-6: 72px;
+$spacer-7: 108px;
+
+// Typography
+$ui-global-ff-base: "Manrope Variable";
+$ui-global-ff-display: "Manrope Variable";
+
 @import "product-card";
+@import "product-card-layout";
